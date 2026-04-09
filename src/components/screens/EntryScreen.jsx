@@ -1,9 +1,76 @@
+import { useEffect, useState } from 'react';
+
+const COLORS = [
+  'rgba(255,238,221,0.4)',
+  'rgba(255,238,221,0.2)',
+  'rgba(255,140,26,0.8)',
+  'rgba(255,61,127,0.7)',
+  'rgba(34,211,238,0.6)',
+  'rgba(192,132,252,0.5)',
+  'rgba(255,238,221,0.15)',
+];
+
+function randomVal() {
+  const r = Math.random();
+  if (r < 0.45) return String(Math.floor(Math.random() * 10));
+  if (r < 0.70) return String(Math.floor(Math.random() * 100)).padStart(2, '0');
+  if (r < 0.88) return String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+  return String(Math.floor(Math.random() * 1000000)).padStart(6, '0');
+}
+
+let uid = 0;
+
 export default function EntryScreen({ onDeploy }) {
+  const [numbers, setNumbers] = useState([]);
+
+  useEffect(() => {
+    const spawn = () => {
+      const now = Date.now();
+      setNumbers(prev => {
+        const live = prev.filter(n => now - n.born < n.duration * 1000 + 200);
+        return [
+          ...live,
+          {
+            id: uid++,
+            born: now,
+            left: Math.random() * 97,
+            value: randomVal(),
+            duration: 1.8 + Math.random() * 2.8,
+            color: COLORS[Math.floor(Math.random() * COLORS.length)],
+            size: 8 + Math.floor(Math.random() * 8),
+          },
+        ].slice(-100);
+      });
+    };
+
+    const id = setInterval(spawn, 55);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <div className="screen entry-screen">
+      <div className="entry-numbers" aria-hidden="true">
+        {numbers.map(n => (
+          <span
+            key={n.id}
+            className="entry-number"
+            style={{
+              left: `${n.left}%`,
+              color: n.color,
+              fontSize: `${n.size}px`,
+              animationDuration: `${n.duration}s`,
+            }}
+          >
+            {n.value}
+          </span>
+        ))}
+      </div>
+
       <div className="entry-content">
         <div className="entry-tag">URBAN DATA SYSTEM v4.2.1</div>
-        <h1 className="entry-title">REALITIES REIMAGINED</h1>
+        <h1 className="entry-title glitch-title" data-text="REALITIES REIMAGINED">
+          REALITIES REIMAGINED
+        </h1>
         <div className="entry-location">Berlin · Alexanderplatz · 02:47</div>
         <p className="entry-subtitle">
           Every city generates data. Someone decides what gets filtered.

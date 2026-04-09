@@ -152,8 +152,87 @@ body {
 .city-silhouette {
   height: 120px;
   opacity: 0.6;
+  position: relative;
+  z-index: 0;
 }
 .city-silhouette svg { width: 100%; height: 100%; }
+
+/* Rising numbers */
+.entry-numbers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.entry-number {
+  position: absolute;
+  bottom: -20px;
+  font-family: var(--mono);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  animation: number-rise linear forwards;
+  white-space: nowrap;
+  line-height: 1;
+}
+@keyframes number-rise {
+  0%   { opacity: 0;   transform: translateY(0); }
+  8%   { opacity: 1; }
+  75%  { opacity: 0.65; }
+  100% { opacity: 0;   transform: translateY(-560px); }
+}
+
+/* Glitch title */
+.glitch-title {
+  position: relative;
+  animation: glitch-main 5s infinite;
+}
+.glitch-title::before,
+.glitch-title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  pointer-events: none;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  line-height: inherit;
+}
+.glitch-title::before {
+  color: #ff3d7f;
+  animation: glitch-layer-1 5s infinite;
+  clip-path: polygon(0 20%, 100% 20%, 100% 45%, 0 45%);
+}
+.glitch-title::after {
+  color: #22d3ee;
+  animation: glitch-layer-2 5s infinite;
+  clip-path: polygon(0 55%, 100% 55%, 100% 82%, 0 82%);
+}
+@keyframes glitch-main {
+  0%, 88%, 100% { text-shadow: none; transform: none; opacity: 1; }
+  89%  { text-shadow: -4px 0 #ff3d7f, 4px 0 #22d3ee; transform: skewX(-2deg); }
+  90%  { text-shadow: 4px 0 #ff3d7f, -4px 0 #22d3ee; transform: skewX(2deg); opacity: 0.85; }
+  91%  { text-shadow: none; transform: none; opacity: 1; }
+  92%  { text-shadow: -2px 0 #ff8c1a; }
+  93%  { text-shadow: none; }
+}
+@keyframes glitch-layer-1 {
+  0%, 88%, 100% { opacity: 0; transform: none; }
+  89%  { opacity: 0.9; transform: translateX(-6px); }
+  90%  { opacity: 0;   transform: translateX(6px); }
+  91%  { opacity: 0.4; transform: translateX(-2px); }
+  92%  { opacity: 0; }
+}
+@keyframes glitch-layer-2 {
+  0%, 87%, 100% { opacity: 0; transform: none; }
+  88%  { opacity: 0.75; transform: translateX(6px); }
+  89%  { opacity: 0; }
+  91%  { opacity: 0.5; transform: translateX(-4px); }
+  92%  { opacity: 0; }
+}
 
 /* =====================
    OVERLOAD SCREEN
