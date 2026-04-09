@@ -18,7 +18,8 @@
   --c-infra: #22d3ee;
   --c-danger: #ff3d7f;
   --c-glitch: #ff8c1a;
-  --mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  --mono: 'Share Tech Mono', ui-monospace, Consolas, monospace;
+  --display: 'Orbitron', 'Share Tech Mono', sans-serif;
 }
 
 /* =====================
@@ -130,9 +131,10 @@ body {
   text-transform: uppercase;
 }
 .entry-title {
+  font-family: var(--display);
   font-size: 34px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-weight: 900;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--c-text);
   line-height: 1.2;
@@ -264,8 +266,9 @@ body {
   text-transform: uppercase;
 }
 .overload-glitch {
+  font-family: var(--display);
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 900;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: #ff3d7f;
@@ -545,6 +548,7 @@ body {
   color: var(--c-muted);
 }
 .escape-title {
+  font-family: var(--display);
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -705,9 +709,10 @@ body {
   text-transform: uppercase;
 }
 .reveal-title {
+  font-family: var(--display);
   font-size: 22px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--c-text);
   line-height: 1.3;
