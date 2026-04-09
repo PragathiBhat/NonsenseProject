@@ -49,6 +49,12 @@ export default function EntryScreen({ onDeploy }) {
 
   return (
     <div className="screen entry-screen">
+      <div className="glitch-tears" aria-hidden="true">
+        <div className="tear tear-1" />
+        <div className="tear tear-2" />
+        <div className="tear tear-3" />
+      </div>
+
       <div className="entry-numbers" aria-hidden="true">
         {numbers.map(n => (
           <span
