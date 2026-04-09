@@ -6,5 +6,5 @@ import tailwindcss from '@tailwindcss/vite'
 // Example: if your repo is github.com/username/alexanderplatz-game, use '/alexanderplatz-game/'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/your-repo-name/',
+  base: '/NonsenseProject/',
 })
