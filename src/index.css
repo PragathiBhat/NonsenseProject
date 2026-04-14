@@ -112,6 +112,7 @@ body {
   min-height: 480px;
   position: relative;
   overflow: hidden;
+  background: #ffffff;
 }
 .entry-content {
   flex: 1;
