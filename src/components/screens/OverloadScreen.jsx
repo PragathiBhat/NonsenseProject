@@ -11,7 +11,6 @@ const DATA_MESSAGES = [
 export default function OverloadScreen({ onReady }) {
   const [progress, setProgress] = useState(0);
   const [msgIndex, setMsgIndex] = useState(0);
-  const [showBtn, setShowBtn] = useState(false);
   const [particles, setParticles] = useState([]);
   const intervalRef = useRef(null);
   const msgIntervalRef = useRef(null);
@@ -31,7 +30,7 @@ export default function OverloadScreen({ onReady }) {
       setProgress(prev => {
         if (prev >= 100) {
           clearInterval(intervalRef.current);
-          setShowBtn(true);
+          onReady();
           return 100;
         }
         return prev + 1.2;
@@ -85,11 +84,6 @@ export default function OverloadScreen({ onReady }) {
           </div>
         </div>
 
-        {showBtn && (
-          <button className="btn btn-primary" onClick={onReady}>
-            Assume Control →
-          </button>
-        )}
       </div>
     </div>
   );
